@@ -1,0 +1,331 @@
+clear
+close all
+clc
+q=-1.602176634e-19; 
+
+%m=1.883531627e-28; 
+%m=3.16754e-27;
+%m=9.10938356e-31;
+m=1.6726219e-27;
+
+M=7.91e+22; 
+
+c=2.99792458e+8;
+
+ax1=0;
+ay1=0;
+az1=0;
+
+ax2=0;
+ay2=0;
+az2=0;
+
+ax3=0;
+ay3=0;
+az3=0;
+
+ax4=0;
+ay4=0;
+az4=0;
+
+ax5=0;
+ay5=0;
+az5=0;
+
+gamma1=65;
+gamma2=55;
+gamma3=1;
+gamma4=1;
+gamma5=1;
+
+v0=sqrt(c^2-(c/gamma1)^2);
+
+vx1=v0;
+vy1=0;
+vz1=0;
+
+v0=sqrt(c^2-(c/gamma2)^2);
+
+vx2=v0;
+vy2=0;
+vz2=0;
+
+v0=sqrt(c^2-(c/gamma3)^2);
+
+vx3=v0;
+vy3=0;
+vz3=0;
+
+v0=sqrt(c^2-(c/gamma4)^2);
+
+vx4=v0;
+vy4=0;
+vz4=0;
+
+v0=sqrt(c^2-(c/gamma5)^2);
+
+vx5=v0;
+vy5=0;
+vz5=0;
+
+x1=-1.9e+8;
+y1=0;
+z1=0;
+
+x2=-1.9e+8;
+y2=0;
+z2=0;
+
+x3=0;
+y3=0;
+z3=0;
+
+x4=0;
+y4=0;
+z4=0;
+
+x5=0;
+y5=0;
+z5=0;
+
+v1=sqrt(vx1^2+vy1^2+vz1^2);
+v2=sqrt(vx2^2+vy2^2+vz2^2);
+v3=sqrt(vx3^2+vy3^2+vz3^2);
+v4=sqrt(vx4^2+vy4^2+vz4^2);
+v5=sqrt(vx5^2+vy5^2+vz5^2);
+
+p1=gamma1*m*v0;
+p2=gamma2*m*v0;
+p3=gamma3*m*v0;
+p4=gamma4*m*v0;
+p5=gamma5*m*v0;
+
+radius=6.371e+6;
+
+Mu0=1.256637062e-6;
+Mu=Mu0*M/(4*pi);
+
+t=0;
+tmax=1;
+h=1e-6;
+ind=1;
+
+xneutral=x1;
+yneutral=y1;
+zneutral=z1;
+
+vxneutral=vx1;
+vyneutral=vy1;
+vzneutral=vz1;
+
+mapsize=2e+8; 
+
+while (t<=tmax)
+    ta(ind)=t;
+    x1a(ind)=x1;
+    y1a(ind)=y1;
+    z1a(ind)=z1;
+
+    x2a(ind)=x2;
+    y2a(ind)=y2;
+    z2a(ind)=z2;
+
+    x3a(ind)=x3;
+    y3a(ind)=y3;
+    z3a(ind)=z3;
+
+    x4a(ind)=x4;
+    y4a(ind)=y4;
+    z4a(ind)=z4;
+
+    x5a(ind)=x5;
+    y5a(ind)=y5;
+    z5a(ind)=z5;
+
+    r1 = sqrt(x1^2+y1^2+z1^2);
+    r2 = sqrt(x2^2+y2^2+z2^2);  
+    r3 = sqrt(x3^2+y3^2+z3^2); 
+    r4 = sqrt(x4^2+y4^2+z4^2);
+    r5 = sqrt(x5^2+y5^2+z5^2);
+    
+    Bx1=Mu*((3*x1*z1)/r1^5);
+    By1=Mu*((3*y1*z1)/r1^5);
+    Bz1=Mu*((2*z1^2-x1^2-y1^2)/r1^5);
+
+    Bx2=Mu*((3*x2*z2)/r2^5);
+    By2=Mu*((3*y2*z2)/r2^5);
+    Bz2=Mu*((2*z2^2-x2^2-y2^2)/r2^5);
+
+    Bx3=Mu*((3*x3*z3)/r3^5);
+    By3=Mu*((3*y3*z3)/r3^5);
+    Bz3=Mu*((2*z3^2-x3^2-y3^2)/r3^5);
+
+    Bx4=Mu*((3*x4*z4)/r4^5);
+    By4=Mu*((3*y4*z4)/r4^5);
+    Bz4=Mu*((2*z4^2-x4^2-y4^2)/r4^5);
+
+    Bx5=Mu*((3*x5*z5)/r5^5);
+    By5=Mu*((3*y5*z5)/r5^5);
+    Bz5=Mu*((2*z5^2-x5^2-y5^2)/r5^5);
+
+    v1=sqrt(vx1^2+vy1^2+vz1^2);
+    v2=sqrt(vx2^2+vy2^2+vz2^2);
+    v3=sqrt(vx3^2+vy3^2+vz3^2);
+    v4=sqrt(vx4^2+vy4^2+vz4^2);
+    v5=sqrt(vx5^2+vy5^2+vz5^2);
+
+    v0=sqrt(c^2-(c/gamma1)^2);
+
+    vx1=vx1*v0/v1;
+    vy1=vy1*v0/v1;
+    vz1=vz1*v0/v1;
+    
+    v0=sqrt(c^2-(c/gamma2)^2);
+
+    vx2=vx2*v0/v2;
+    vy2=vy2*v0/v2;
+    vz2=vz2*v0/v2;
+
+    v0=sqrt(c^2-(c/gamma3)^2);
+
+    vx3=vx3*v0/v3;
+    vy3=vy3*v0/v3;
+    vz3=vz3*v0/v3;
+
+    v0=sqrt(c^2-(c/gamma4)^2);
+
+    vx4=vx4*v0/v4;
+    vy4=vy4*v0/v4;
+    vz4=vz4*v0/v4;
+
+    v0=sqrt(c^2-(c/gamma5)^2);
+
+    vx5=vx5*v0/v5;
+    vy5=vy5*v0/v5;
+    vz5=vz5*v0/v5;
+
+    ax1=q/m*(vy1*Bz1-vz1*By1)/gamma1;
+    ay1=q/m*(vz1*Bx1-vx1*Bz1)/gamma1;
+    az1=q/m*(vx1*By1-vy1*Bx1)/gamma1;
+
+    ax2=q/m*(vy2*Bz2-vz2*By2)/gamma2;
+    ay2=q/m*(vz2*Bx2-vx2*Bz2)/gamma2;
+    az2=q/m*(vx2*By2-vy2*Bx2)/gamma2;
+
+    ax3=q/m*(vy3*Bz3-vz3*By3)/gamma3;
+    ay3=q/m*(vz3*Bx3-vx3*Bz3)/gamma3;
+    az3=q/m*(vx3*By3-vy3*Bx3)/gamma3;
+
+    ax4=q/m*(vy4*Bz4-vz4*By4)/gamma4;
+    ay4=q/m*(vz4*Bx4-vx4*Bz4)/gamma4;
+    az4=q/m*(vx4*By4-vy4*Bx4)/gamma4;
+
+    ax5=q/m*(vy5*Bz5-vz5*By5)/gamma5;
+    ay5=q/m*(vz5*Bx5-vx5*Bz5)/gamma5;
+    az5=q/m*(vx5*By5-vy5*Bx5)/gamma5;
+
+    if r1>radius && r1<mapsize
+        vx1=vx1+ax1*h;
+        vy1=vy1+ay1*h;
+        vz1=vz1+az1*h;
+    else
+        vx1=0;
+        vy1=0;
+        vz1=0;
+    end
+
+    if r2>radius && r2<mapsize
+        vx2=vx2+ax2*h;
+        vy2=vy2+ay2*h;
+        vz2=vz2+az2*h;
+    else
+        vx2=0;
+        vy2=0;
+        vz2=0;
+    end
+
+    if r3>radius && r3<mapsize
+        vx3=vx3+ax3*h;
+        vy3=vy3+ay3*h;
+        vz3=vz3+az3*h;
+    else
+        vx3=0;
+        vy3=0;
+        vz3=0;
+    end
+
+    if r4>radius && r4<mapsize
+        vx4=vx4+ax4*h;
+        vy4=vy4+ay4*h;
+        vz4=vz4+az4*h;
+    else
+        vx4=0;
+        vy4=0;
+        vz4=0;
+    end
+
+    if r5>radius && r1<mapsize
+        vx5=vx5+ax5*h;
+        vy5=vy5+ay5*h;
+        vz5=vz5+az5*h;
+    else
+        vx5=0;
+        vy5=0;
+        vz5=0;
+    end
+
+    x1=x1+vx1*h;
+    y1=y1+vy1*h;
+    z1=z1+vz1*h;
+
+    x2=x2+vx2*h;
+    y2=y2+vy2*h;
+    z2=z2+vz2*h;
+
+    x3=x3+vx3*h;
+    y3=y3+vy3*h;
+    z3=z3+vz3*h;
+
+    x4=x4+vx4*h;
+    y4=y4+vy4*h;
+    z4=z4+vz4*h;
+
+    x5=x5+vx5*h;
+    y5=y5+vy5*h;
+    z5=z5+vz5*h;
+
+    rneutral = sqrt(xneutral^2+yneutral^2+zneutral^2); 
+
+    if rneutral>radius && rneutral<mapsize
+        xneutrala(ind)=xneutral;
+        yneutrala(ind)=yneutral;
+        zneutrala(ind)=zneutral;
+        xneutral=xneutral+vxneutral*h;
+        yneutral=yneutral+vyneutral*h;
+        zneutral=zneutral+vzneutral*h;
+    end
+
+    xdist=abs(x1-xneutral);
+    ydist=abs(y1-yneutral);
+    zdist=abs(z1-zneutral);
+    da(ind)=sqrt(xdist^2+ydist^2+zdist^2); 
+
+    t=t+h;
+    ind=ind+1;
+end
+figure
+plot3(x1a,y1a,z1a,'r') 
+hold on;
+plot3(x2a,y2a,z2a,'g') 
+plot3(x3a,y3a,z3a,'b') 
+plot3(x4a,y4a,z4a,'y') 
+plot3(x5a,y5a,z5a,'c') 
+title('motion of particle') 
+%%plot3(xneutrala,yneutrala,zneutrala,'g') 
+axis equal
+[x1,y1,z1]=sphere;
+surf(radius*x1,radius*y1,radius*z1);
+hold off;
+%plot(ta,da)
+%title('magnitude of trajectory difference')
+
